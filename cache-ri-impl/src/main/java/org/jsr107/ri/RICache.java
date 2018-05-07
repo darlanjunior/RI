@@ -1628,7 +1628,7 @@ public final class RICache<K, V> implements Cache<K, V> {
       //restart start as fetch finished
       start = statisticsEnabled() ? System.nanoTime() : 0;
 
-      EntryProcessorEntry<K, V> entry = new EntryProcessorEntry<>(valueConverter, key,
+      EntryProcessorEntry<K, V> entry = new EntryProcessorEntry<K, V>(valueConverter, key,
           cachedValue, now, dispatcher, configuration.isReadThrough() ? cacheLoader : null);
       try {
         result = entryProcessor.process(entry, arguments);
@@ -1765,7 +1765,7 @@ public final class RICache<K, V> implements Cache<K, V> {
       throw new NullPointerException();
     }
 
-    HashMap<K, EntryProcessorResult<T>> map = new HashMap<>();
+    HashMap<K, EntryProcessorResult<T>> map = new HashMap<K, EntryProcessorResult<T>>();
     for (K key : keys) {
       RIEntryProcessorResult<T> result = null;
       try {
